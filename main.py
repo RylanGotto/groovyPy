@@ -2,26 +2,11 @@
 # -*- coding: utf-8 -*-
 
 import tornado.ioloop
-
 from log import Log
 from tornado import autoreload
 from tornado import web
 from tornado import httpserver
 from config import settings
-
-import tornado.options
-import tornado.web
-import os
-import local_search
-import json
-from tornado.options import define, options
-from player import con #controller
-import thread
-
-
-
-
-
 
 #Temp handler, this will be removed
 class MainHandler(tornado.web.RequestHandler):

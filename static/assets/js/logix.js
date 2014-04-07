@@ -5,16 +5,23 @@ $(document).ready(function(){
   var ws = $.websocket("ws://localhost:8888/ws", {
         events: {
                 next_track: function(e) { 
+
                         $("#nowplaying").empty();
-                        $div = document.getElementById("playlist");
-                        $musicdiv = $div.children[0];
-                        $path = $musicdiv.children[0].value;
-                        $filename = $musicdiv.children[1].innerHTML;
+                            $div = document.getElementById("playlist");
+                            $musicdiv = $div.children[0];
+                            $path = $musicdiv.children[0].value;
+                            $filename = $musicdiv.children[1].innerHTML;
                         $($musicdiv).remove();
                         $("#nowplaying").append($filename);
                         ws.send('song', $path);
-                        $("#recently_played").append("<div class='localmus dragsearch'>" + "<input type='hidden' value='" + $path + "'/> <p>"+$filename+"</p>");
-                    
+                        $("#recently_played").append(
+                            "<div class='localmus dragsearch'>" 
+                            + "<input type='hidden' value='" 
+                            + $path 
+                            + "'/> <p>"
+                            + $filename
+                            + "</p>"
+                            );     
                 }
         }
     });
@@ -26,24 +33,42 @@ $('#search_box').change(function (){
 });
 
 $('.localmus').click( function(){
-    $("#nowplaying").empty();
+  $("#nowplaying").empty();
   $path = $(this).children().val();
   $filename = $(this).text();
   $("#nowplaying").append($filename);
   ws.send('song', $path);
-  $("#recently_played").append("<div class='localmus dragsearch'>" + "<input type='hidden' value='" + $path + "'/> <p>"+$filename+"</p>");
+  $("#recently_played").append(
+    "<div class='localmus dragsearch'>" 
+    + "<input type='hidden' value='" 
+    + $path 
+    + "'/> <p>"
+    + $filename
+    + "</p>"
+    );
 });
 
 $('#next').click ( function(){
     $("#nowplaying").empty();
+    var value = $('#pause').val()
+    if (value.indexOf('play') >= 0) {
+        $('#pause').val('pause');
+    }
     $div = document.getElementById("playlist");
-    $musicdiv = $div.children[0];
-    $path = $musicdiv.children[0].value;
-    $filename = $musicdiv.children[1].innerHTML;
+        $musicdiv = $div.children[0];
+        $path = $musicdiv.children[0].value;
+        $filename = $musicdiv.children[1].innerHTML;
     $($musicdiv).remove();
     $("#nowplaying").append($filename);
     ws.send('song', $path);
-    $("#recently_played").append("<div class='localmus dragsearch'>" + "<input type='hidden' value='" + $path + "'/> <p>"+$filename+"</p>");
+    $("#recently_played").append(
+        "<div class='localmus dragsearch'>" 
+        + "<input type='hidden' value='" 
+        + $path 
+        + "'/> <p>"
+        + $filename
+        + "</p>"
+        );
 });
 
 $('#test').click ( function(){
@@ -72,14 +97,13 @@ $('.dropme').sortable({
 });
 
   $('#pause').toggle(function (){
-    $(this).val("Play");
+    $(this).val("play");
     ws.send('pause', '');
   },
   function (){
-     $(this).val("Pause");
+     $(this).val("pause");
     ws.send('pause', '');
-  }
-  );
+  });
  
   
     var slider = $('#slider'),  
@@ -126,14 +150,7 @@ $('.dropme').sortable({
           tooltip.fadeOut('fast');  
         },  
     });  
-  
- 
-
 });
-
-function test(){
-    console.log();
-}
 
 function search_filenames(){
     $x = 0;
@@ -141,9 +158,6 @@ function search_filenames(){
     $results = new Array();
     for($i=0;$i<$musicfile_array.length;$i++){
 
-        $file_ext = $musicfile_array[$i]['filename'].split('.').pop();
-        
-            if ($file_ext.localeCompare("mp3") || $file_ext.localeCompare("m4a") || $file_ext.localeCompare("aac")){
 
                     $musicfile_terms = $musicfile_array[$i]['filename'].toLowerCase().replace(/[^A-Za-z\s]+/g, ' ').split(" ");
 
@@ -156,16 +170,13 @@ function search_filenames(){
                                     $mainDiv.children[0].value = $musicfile_array[$i]['path'];
                                     $mainDiv.children[1].innerHTML = $musicfile_array[$i]['filename'];
                                     $x++;
-
                                 } 
                                
                             }
                         }
-                    }
+                    
          } 
 }
-    
-    
 
 function create_searcharray(){
     $( ".localmus" ).each(function( index ) {

@@ -7,11 +7,11 @@ def get_filepaths(directory):
 	file_paths = {}
 	for root, directories, files in os.walk(directory):
 		for filename in files:
-			if filename.endswith('.mp3') or filename.endswith('.m4a') or filename.endswith('.aac') or filename.endswith('.ogg'):
+			extension = filename.lower()
+			if extension.endswith('.mp3') or extension.endswith('.m4a') or extension.endswith('.aac') or extension.endswith('.ogg') or extension.endswith('.mp4'):
 				filepath = os.path.join(root, filename)
 				file_paths.update({filepath:filename})
 	return file_paths
-
 
 def search_filenames(terms, directory):
 	pathResults = {}
@@ -27,10 +27,8 @@ def search_filenames(terms, directory):
 				if usrword == dirword and value not in result:
 					result.append(value)
 					paths.append({'path':key, 'title':value})
-
 	pathResults.update({'data':paths})
 	return pathResults
-
 
 def get_dir_terms(filename):
 	filename = filename.lower()
@@ -39,7 +37,6 @@ def get_dir_terms(filename):
 	return dir_terms.split(" ")
 
 def get_user_terms(srch_str):
-	
 	userCompWords = srch_str.lower().split(" ") #User Comparable words
 	return userCompWords
 

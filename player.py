@@ -1,8 +1,7 @@
 import mplayer
+import thread
 import time
 import os
-import thread
-
 
 class con(object):
 	def __init__(self):
@@ -28,22 +27,19 @@ class con(object):
 						self.isplaying = True
 				if message['type'] == 'next':
 						pass
-						
 				if message['type'] == 'volume':
 						self.player.volume = message['data']
+						
 	def is_playing(self):
 		while True:
 			while self.player.time_pos != self.player.time_pos:
 				time.sleep(1)
 				self.isplaying = True
-				print self.isplaying
-
 			else:
 				if self.paused is True:
 					self.isplaying = True
 				else:
 					self.isplaying = False
-			print self.isplaying
 
 			
 					
