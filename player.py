@@ -28,14 +28,20 @@ class con(object):
 				if message['type'] == 'next':
 						pass
 				if message['type'] == 'volume':
+						time.sleep(0.1)
+						print message['data']
 						self.player.volume = message['data']
+	            		
+
 						
 	def is_playing(self):
 		while True:
 			while self.player.time_pos != self.player.time_pos:
 				time.sleep(1)
 				self.isplaying = True
+				print self.isplaying
 			else:
+				print self.isplaying
 				if self.paused is True:
 					self.isplaying = True
 				else:

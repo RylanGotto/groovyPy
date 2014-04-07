@@ -14,7 +14,7 @@ $(document).ready(function(){
                         $($musicdiv).remove();
                         $("#nowplaying").append($filename);
                         ws.send('song', $path);
-                        $("#recently_played").append(
+                        $("#recently_played").prepend(
                             "<div class='localmus dragsearch'>" 
                             + "<input type='hidden' value='" 
                             + $path 
@@ -38,7 +38,7 @@ $('.localmus').click( function(){
   $filename = $(this).text();
   $("#nowplaying").append($filename);
   ws.send('song', $path);
-  $("#recently_played").append(
+  $("#recently_played").prepend(
     "<div class='localmus dragsearch'>" 
     + "<input type='hidden' value='" 
     + $path 
@@ -61,7 +61,7 @@ $('#next').click ( function(){
     $($musicdiv).remove();
     $("#nowplaying").append($filename);
     ws.send('song', $path);
-    $("#recently_played").append(
+    $("#recently_played").prepend(
         "<div class='localmus dragsearch'>" 
         + "<input type='hidden' value='" 
         + $path 
@@ -106,50 +106,50 @@ $('.dropme').sortable({
   });
  
   
-    var slider = $('#slider'),  
-        tooltip = $('.tooltip');  
-  
-    tooltip.hide();  
-  
-    slider.slider({  
-        range: "min",  
-        min: 1,  
-        value: 35,  
-  
-        start: function(event,ui) {  
-          tooltip.fadeIn('fast');  
-        },  
-  
-        slide: function(event, ui) {  
-  
-            var value = slider.slider('value'),  
-                volume = $('.volume');  
-  
-            tooltip.css('left', value).text(ui.value);  
-  
-            if(value <= 5) {   
-                volume.css('background-position', '0 0');  
-                ws.send('volume', value);
-            }   
-            else if (value <= 25) {  
-                volume.css('background-position', '0 -25px');  
-                ws.send('volume', value);
-            }   
-            else if (value <= 75) {  
-                volume.css('background-position', '0 -50px');  
-                ws.send('volume', value);
-            }   
-            else {  
-                volume.css('background-position', '0 -75px');  
-                ws.send('volume', value);
-            };  
-  
-        },  
-  
-        stop: function(event,ui) {  
-          tooltip.fadeOut('fast');  
-        },  
-    });  
+var slider = $('#slider'),  
+    tooltip = $('.tooltip');  
+
+tooltip.hide();  
+
+slider.slider({  
+    range: "min",  
+    min: 1,  
+    value: 35,  
+
+    start: function(event,ui) {  
+      tooltip.fadeIn('fast');  
+    },  
+
+    slide: function(event, ui) {  
+
+        var value = slider.slider('value'),  
+            volume = $('.volume');  
+
+        tooltip.css('left', value).text(ui.value);  
+
+        if(value <= 5) {   
+            volume.css('background-position', '0 0');  
+            ws.send('volume', value);
+        }   
+        else if (value <= 25) {  
+            volume.css('background-position', '0 -25px');  
+            ws.send('volume', value);
+        }   
+        else if (value <= 75) {  
+            volume.css('background-position', '0 -50px');  
+            ws.send('volume', value);
+        }   
+        else {  
+            volume.css('background-position', '0 -75px');  
+            ws.send('volume', value);
+        };  
+
+    },  
+
+    stop: function(event,ui) {  
+      tooltip.fadeOut('fast');  
+    },  
+});  
 });
 
 function search_filenames(){
