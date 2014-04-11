@@ -1,7 +1,7 @@
 $user_searchterms = new Array();
 $musicfile_array = new Array();
 $(document).ready(function(){
-    create_searcharray();
+  create_searcharray();
   var ws = $.websocket("ws://localhost:8888/ws", {
         events: {
                 next_track: function(e) { 
@@ -14,7 +14,7 @@ $(document).ready(function(){
                         $($musicdiv).remove();
                         $("#nowplaying").append($filename);
                         ws.send('song', $path);
-                        $("#recently_played").append(
+                        $("#recently_played").prepend(
                             "<div class='localmus dragsearch'>" 
                             + "<input type='hidden' value='" 
                             + $path 
@@ -22,14 +22,18 @@ $(document).ready(function(){
                             + $filename
                             + "</p>"
                             );     
+                },
+                gs_response: function(e){
+                    groove_results(e);
                 }
         }
     });
 
 $('#search_box').change(function (){
     get_searchterm(this.value);
-    this.value = '';
+    ws.send('search', this.value);
     search_filenames();
+
 });
 
 $('.localmus').click( function(){
@@ -38,7 +42,7 @@ $('.localmus').click( function(){
   $filename = $(this).text();
   $("#nowplaying").append($filename);
   ws.send('song', $path);
-  $("#recently_played").append(
+  $("#recently_played").prepend(
     "<div class='localmus dragsearch'>" 
     + "<input type='hidden' value='" 
     + $path 
@@ -61,7 +65,7 @@ $('#next').click ( function(){
     $($musicdiv).remove();
     $("#nowplaying").append($filename);
     ws.send('song', $path);
-    $("#recently_played").append(
+    $("#recently_played").prepend(
         "<div class='localmus dragsearch'>" 
         + "<input type='hidden' value='" 
         + $path 
@@ -106,52 +110,51 @@ $('.dropme').sortable({
   });
  
   
-    var slider = $('#slider'),  
-        tooltip = $('.tooltip');  
-  
-    tooltip.hide();  
-  
-    slider.slider({  
-        range: "min",  
-        min: 1,  
-        value: 35,  
-  
-        start: function(event,ui) {  
-          tooltip.fadeIn('fast');  
-        },  
-  
-        slide: function(event, ui) {  
-  
-            var value = slider.slider('value'),  
-                volume = $('.volume');  
-  
-            tooltip.css('left', value).text(ui.value);  
-  
-            if(value <= 5) {   
-                volume.css('background-position', '0 0');  
-                ws.send('volume', value);
-            }   
-            else if (value <= 25) {  
-                volume.css('background-position', '0 -25px');  
-                ws.send('volume', value);
-            }   
-            else if (value <= 75) {  
-                volume.css('background-position', '0 -50px');  
-                ws.send('volume', value);
-            }   
-            else {  
-                volume.css('background-position', '0 -75px');  
-                ws.send('volume', value);
-            };  
-  
-        },  
-  
-        stop: function(event,ui) {  
-          tooltip.fadeOut('fast');  
-        },  
-    });  
-});
+var slider = $('#slider'),  
+    tooltip = $('.tooltip');  
 
+tooltip.hide();  
+
+slider.slider({  
+    range: "min",  
+    min: 1,  
+    value: 35,  
+
+    start: function(event,ui) {  
+      tooltip.fadeIn('fast');  
+    },  
+
+    slide: function(event, ui) {  
+
+        var value = slider.slider('value'),  
+            volume = $('.volume');  
+
+        tooltip.css('left', value).text(ui.value);  
+
+        if(value <= 5) {   
+            volume.css('background-position', '0 0');  
+            ws.send('volume', value);
+        }   
+        else if (value <= 25) {  
+            volume.css('background-position', '0 -25px');  
+            ws.send('volume', value);
+        }   
+        else if (value <= 75) {  
+            volume.css('background-position', '0 -50px');  
+            ws.send('volume', value);
+        }   
+        else {  
+            volume.css('background-position', '0 -75px');  
+            ws.send('volume', value);
+        };  
+
+    },  
+
+    stop: function(event,ui) {  
+      tooltip.fadeOut('fast');  
+    },  
+});  
+});
 function search_filenames(){
     $x = 0;
     $serch_divs = new Array('div0','div1','div2','div3','div4');
@@ -176,6 +179,19 @@ function search_filenames(){
                         }
                     
          } 
+}
+
+function groove_results(e){
+    for(var i = 0;i<e.data.length;i++){
+                        console.log(e.data[i]['url']);
+                    }
+    $serch_divs = new Array('div5','div6','div7','div8','div9','div10','div11','div12','div13','div14','div15','div16','div17','div18','div19','div20','div21','div22','div23','div24');
+
+    for(var i = 0;i<e.data.length;i++){
+       $mainDiv = document.getElementById($serch_divs[i]);
+       $mainDiv.children[0].value = e.data[i]['url'];
+       $mainDiv.children[1].innerHTML = e.data[i]['title'];
+    } 
 }
 
 function create_searcharray(){

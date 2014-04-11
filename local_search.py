@@ -10,6 +10,9 @@ def get_filepaths(directory):
 			extension = filename.lower()
 			if extension.endswith('.mp3') or extension.endswith('.m4a') or extension.endswith('.aac') or extension.endswith('.ogg') or extension.endswith('.mp4'):
 				filepath = os.path.join(root, filename)
+				filepath = filepath.replace('\\\\', '\\') #if any one ever has to maintain this, I am sorry just know this is because the path is being dumped 
+														  #so many times it will keep losing a back slash on windows, :( fuck windows
+				filepath = filepath.replace('\\', '\\\\')
 				file_paths.update({filepath:filename})
 	return file_paths
 
