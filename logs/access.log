@@ -138,6 +138,7 @@
 2014-04-06 23:26:34,110 INFO  Ready and listening 
 2014-04-06 23:28:51,561 INFO  Ready and listening 
 2014-04-06 23:29:38,864 INFO  Ready and listening 
+<<<<<<< HEAD
 2014-04-06 23:39:10,737 INFO  Ready and listening 
 2014-04-07 00:30:27,728 INFO  Ready and listening 
 2014-04-07 14:37:42,807 INFO  Ready and listening 
@@ -357,3 +358,42 @@
 2014-04-11 01:32:45,039 INFO  Ready and listening 
 2014-04-11 01:33:44,638 INFO  Ready and listening 
 2014-04-11 01:34:55,377 INFO  Ready and listening 
+=======
+2014-04-06 23:35:55,101 INFO  Ready and listening 
+2014-04-06 23:36:49,213 INFO  Ready and listening 
+2014-04-06 23:40:23,627 INFO  Ready and listening 
+2014-04-06 23:42:01,840 INFO  Ready and listening 
+2014-04-06 23:45:34,107 INFO  Ready and listening 
+2014-04-07 00:08:35,004 INFO  Ready and listening 
+2014-04-07 00:09:25,526 INFO  Ready and listening 
+2014-04-07 00:10:41,124 INFO  Ready and listening 
+2014-04-07 00:11:49,135 INFO  Ready and listening 
+2014-04-07 00:15:33,596 INFO  Ready and listening 
+2014-04-07 00:16:07,452 INFO  Ready and listening 
+2014-04-07 00:17:29,487 INFO  Ready and listening 
+2014-04-07 00:18:29,219 INFO  Ready and listening 
+2014-04-07 00:20:39,749 INFO  Ready and listening 
+2014-04-07 00:20:47,236 INFO  Ready and listening 
+2014-04-07 00:21:58,077 INFO  Ready and listening 
+2014-04-07 00:35:44,986 INFO  Ready and listening 
+2014-04-07 00:36:24,830 INFO  Ready and listening 
+2014-04-07 00:38:13,158 INFO  Ready and listening 
+2014-04-07 00:39:23,657 INFO  Ready and listening 
+2014-04-07 00:40:44,318 INFO  Ready and listening 
+2014-04-07 00:41:41,324 INFO  Ready and listening 
+2014-04-07 00:42:23,190 INFO  Ready and listening 
+2014-04-07 00:43:12,880 INFO  Ready and listening 
+2014-04-07 00:43:44,093 INFO  Ready and listening 
+2014-04-07 00:44:42,743 INFO  Ready and listening 
+2014-04-07 00:45:57,684 INFO  Ready and listening 
+2014-04-07 00:49:35,131 INFO  Ready and listening 
+2014-04-07 00:50:45,146 INFO  Ready and listening 
+2014-04-07 00:51:27,920 INFO  Ready and listening 
+2014-04-07 00:52:02,336 INFO  Ready and listening 
+2014-04-07 01:49:08,701 INFO  Ready and listening 
+2014-04-07 01:53:22,191 INFO  Ready and listening 
+2014-04-07 01:55:28,448 INFO  Ready and listening 
+2014-04-07 10:32:23,346 INFO  Ready and listening 
+2014-04-07 10:57:20,100 INFO  Ready and listening 
+2014-04-07 11:37:06,997 INFO  Ready and listening 
+>>>>>>> 1e5b80a81e029b70f49e01ace4b17f45df9c55d0

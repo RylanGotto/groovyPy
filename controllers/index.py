@@ -27,6 +27,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
 
     def on_message(self, message):
         message = json.loads(message)
+<<<<<<< HEAD
         res = player_controller.run(message)
         if res != None:
             self.write_message(json.dumps(res))
@@ -38,7 +39,17 @@ class WSHandler(tornado.websocket.WebSocketHandler):
          #   time.sleep(2)
          #   if not player_controller.isplaying and not player_controller.paused:
             #    self.write_message(json.dumps(dict))
+=======
+        player_controller.run(message)
 
+
+    def playerloop(self):
+        dict = {'type':'next_track','data':'workings'}
+        while True:
+           time.sleep(2)
+           if not player_controller.isplaying and not player_controller.paused:
+                self.write_message(json.dumps(dict))
+>>>>>>> 1e5b80a81e029b70f49e01ace4b17f45df9c55d0
 
             
            
